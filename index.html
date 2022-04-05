@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resposive form</title>
+    <link rel="stylesheet" href="resposeForm.css">
+    <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous"> -->
+
+</head>
+<body> 
+   <div class="container">
+    <form action="" autocomplete="off" method="post" name="google-sheet">
+        <h3><center>Contact form</center></h3>
+        <input type="text" placeholder="Enter your name" name="Name">
+        <input type="email" placeholder="Enter your Email" name="email">
+        <input type="text" placeholder="Enter your Phone Number" name="phone">
+        
+        <select name="degree">
+            <option value="not selected">Select your course</option>
+            <option value="BCA">BCA</option>
+            <option value="BCOM">BCOM</option>
+            <option value="BTECH">BTECH</option>
+            <option value="BSc">BSc</option>
+        </select>
+        
+        <textarea  cols="" rows="5" placeholder="How we can help you " name="message"></textarea>
+        <label> <b>Gender</b></label><br>
+        Male <input type="radio" name="Gender" value="Male">
+        Female <input type="radio" name="Gender" value="Female">
+        <button type="submit" name="submit">Send</button>
+        <button type="reset" class="reset">Reset</button>
+    </form>
+</div>
+    <script>
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbwhtSGkHOwNfnqmlv9CAyQRa3HvmaqK4fJDI9ZPXqIPywkLz4mU15uP_FPOsUdA2yKxYA/exec'
+    const form = document.forms['google-sheet']
+  
+    form.addEventListener('submit', e => {
+      e.preventDefault()
+      fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+        .then(response => alert("Thanks for Contacting us..! Your response is collected...!"))
+        .catch(error => console.error('Error!', error.message))
+    })
+  </script>
+    
+</body>
+</html>
